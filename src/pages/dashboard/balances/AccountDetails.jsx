@@ -56,6 +56,8 @@ function AccountDetails() {
     accountTransactions,
   );
 
+  const hasTransactions = accountTransactions?.length > 0;
+
   const fields = [
     { label: `${isCard ? "Card" : "Bank"} Name`, value: account?.service },
     { label: "Account Type", value: account?.type },
@@ -161,7 +163,7 @@ function AccountDetails() {
         </Card>
       </Section>
 
-      {accountTransactions?.length > 0 && (
+      {hasTransactions && (
         <Section title="Transaction History">
           <Card variant="list" className="!px-8 !pb-10">
             <div className="hidden md:block">

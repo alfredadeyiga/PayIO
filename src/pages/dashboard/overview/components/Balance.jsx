@@ -21,6 +21,8 @@ function Balance() {
 
   const balances = data?.slice(0, 3);
 
+  const hasData = balances?.length > 0;
+
   const totalBalance = data?.reduce((sum, item) => sum + item.total, 0);
 
   function handleNext() {
@@ -40,7 +42,7 @@ function Balance() {
   return (
     <Section variant="overview" title="Total Balance">
       <Card id="balances">
-        {balances.length !== 0 ? (
+        {hasData ? (
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center pb-3 border-b border-divider">

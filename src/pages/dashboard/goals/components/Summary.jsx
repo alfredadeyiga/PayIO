@@ -17,7 +17,9 @@ import { formatPeriodOptions } from "../../../../utils/formatPeriodOptions";
 function Summary() {
   const [showOptions, setShowOptions] = useState(false);
 
-  const defaultPeriod = getCurrentPeriod();
+  const currentPeriod = getCurrentPeriod();
+
+  const defaultPeriod = formatPeriod(currentPeriod);
 
   const defaultOption = {
     value: defaultPeriod,
@@ -46,6 +48,8 @@ function Summary() {
     openModal({ content: <TransactionsForm /> });
   }
 
+  const hasData = transactions?.length > 0;
+
   const options = formatPeriodOptions(dropdownOptions);
 
   const data = formatSavingsChartData(transactions, selectedOption.value);
@@ -54,7 +58,7 @@ function Summary() {
 
   return (
     <Card variant="dashboard" className="!p-6">
-      {transactions.length !== 0 ? (
+      {hasData ? (
         <div className="flex flex-col gap-4 xl:gap-6">
           <div className="flex justify-between gap-2 items-center">
             <div className="flex justify-between items-center gap-7 w-full xl:w-auto">
