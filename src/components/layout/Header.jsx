@@ -9,6 +9,7 @@ import SearchDropdown from "../ui/SearchDropdown";
 import { RiMenu3Fill } from "react-icons/ri";
 import { useAuth } from "../../context/AuthContext";
 import { useNotifications } from "../../hooks/features/notifications/useNotifications";
+import { useProfile } from "../../hooks/features/settings/useProfile";
 
 function Header({ onToggleSidebar }) {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -19,9 +20,9 @@ function Header({ onToggleSidebar }) {
 
   const unreadNotifs = notifications?.filter((notif) => !notif.is_read);
 
-  const { user } = useAuth();
+  const { data: profile } = useProfile();
 
-  const firstName = user.user_metadata.first_name;
+  const firstName = profile?.first_name;
 
   const location = useLocation();
 
