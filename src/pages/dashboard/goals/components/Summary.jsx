@@ -9,7 +9,6 @@ import SavingsChart from "../../../../components/ui/SavingsChart";
 import { useModal } from "../../../../context/ModalContext";
 import TransactionsForm from "../../../../components/ui/TransactionsForm";
 import { useTransactions } from "../../../../hooks/features/transactions/useTransactions";
-import Loader from "../../../../components/ui/Loader";
 import { formatSavingsChartData } from "../../../../utils/formatGroupData";
 import { formatPeriod, getCurrentPeriod } from "../../../../utils/formatDate";
 import { formatPeriodOptions } from "../../../../utils/formatPeriodOptions";
@@ -28,7 +27,7 @@ function Summary() {
 
   const [selectedOption, setSelectedOption] = useState(defaultOption);
 
-  const { data: transactions, isLoading } = useTransactions();
+  const { data: transactions } = useTransactions();
 
   const { openModal } = useModal();
 
@@ -53,8 +52,6 @@ function Summary() {
   const options = formatPeriodOptions(dropdownOptions);
 
   const data = formatSavingsChartData(transactions, selectedOption.value);
-
-  if (isLoading) return <Loader />;
 
   return (
     <Card variant="dashboard" className="!p-6">

@@ -18,7 +18,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/dashboard" replace />,
+    element: <Navigate to="/dashboard/overview" replace />,
   },
   {
     path: "/dashboard",

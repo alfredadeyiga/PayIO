@@ -8,7 +8,6 @@ import { formatCurrencyRounded } from "../../../../utils/formatCurrency";
 import EmptyState from "../../../../components/ui/EmptyState";
 import { useModal } from "../../../../context/ModalContext";
 import { useBalances } from "../../../../hooks/features/balances/useBalances";
-import Loader from "../../../../components/ui/Loader";
 import { formatAccountNumber } from "../../../../utils/formatAccountNumber";
 import BalanceForm from "../../../../components/ui/BalanceForm";
 
@@ -17,7 +16,7 @@ function Balance() {
 
   const { openModal } = useModal();
 
-  const { data, isLoading } = useBalances();
+  const { data } = useBalances();
 
   const balances = data?.slice(0, 3);
 
@@ -36,8 +35,6 @@ function Balance() {
   function handleAddBalance() {
     openModal({ content: <BalanceForm /> });
   }
-
-  if (isLoading) return <Loader />;
 
   return (
     <Section variant="overview" title="Total Balance">

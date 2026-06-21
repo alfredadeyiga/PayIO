@@ -16,7 +16,7 @@ function Account() {
 
   const [localLoading, setLocalLoading] = useState(false);
 
-  const { data: profile, isLoading } = useProfile();
+  const { data: profile } = useProfile();
 
   const { mutate, isPending } = useUpdateProfile();
 
@@ -122,7 +122,7 @@ function Account() {
     return `${code} | ${firstSlice} ${lastSlice}`;
   }
 
-  if (isLoading || isPending || localLoading) return <Loader />;
+  if (isPending || localLoading) return <Loader />;
 
   return (
     <Form variant="settings" onSubmit={handleUpdateProfile}>

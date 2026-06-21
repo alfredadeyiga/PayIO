@@ -8,13 +8,12 @@ import EmptyState from "../../../../components/ui/EmptyState";
 import { useModal } from "../../../../context/ModalContext";
 import GoalsForm from "../../../../components/ui/GoalsForm";
 import { useGoals } from "../../../../hooks/features/goals/useGoals";
-import Loader from "../../../../components/ui/Loader";
 import { getCurrentPeriod } from "../../../../utils/formatDate";
 
 function Goals() {
   const { openModal } = useModal();
 
-  const { data, isLoading } = useGoals();
+  const { data } = useGoals();
 
   const hasData = data?.length > 0;
 
@@ -37,7 +36,6 @@ function Goals() {
     });
   }
 
-  if (isLoading) return <Loader />;
 
   return (
     <Section variant="overview" title="Goals">

@@ -5,7 +5,6 @@ import Card from "../../../components/ui/Card";
 import EmptyState from "../../../components/ui/EmptyState";
 import { useModal } from "../../../context/ModalContext";
 import { useBalances } from "../../../hooks/features/balances/useBalances";
-import Loader from "../../../components/ui/Loader";
 import BalanceForm from "../../../components/ui/BalanceForm";
 import { formatAccountNumber } from "../../../utils/formatAccountNumber";
 import { useState } from "react";
@@ -17,7 +16,7 @@ function Balances() {
 
   const { openModal } = useModal();
 
-  const { data: balances, isLoading } = useBalances();
+  const { data: balances } = useBalances();
 
   const { mutate: deleteId } = useDeleteBalance();
 
@@ -36,8 +35,6 @@ function Balances() {
   function handleAddBalance() {
     openModal({ content: <BalanceForm /> });
   }
-
-  if (isLoading) return <Loader />;
 
   return (
     <Section title="Balances">

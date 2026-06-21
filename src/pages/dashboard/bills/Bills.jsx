@@ -13,7 +13,6 @@ import EmptyState from "../../../components/ui/EmptyState";
 import TableCard from "../../../components/ui/TableCard";
 import { useModal } from "../../../context/ModalContext";
 import BillsForm from "../../../components/ui/BillsForm";
-import Loader from "../../../components/ui/Loader";
 import { useBills } from "../../../hooks/features/bills/useBills";
 import ActionField from "../../../components/ui/ActionField";
 import { useDeleteBills } from "../../../hooks/features/bills/useDeleteBills";
@@ -21,7 +20,7 @@ import { useDeleteBills } from "../../../hooks/features/bills/useDeleteBills";
 function Bills() {
   const { openModal } = useModal();
 
-  const { data, isLoading } = useBills();
+  const { data } = useBills();
 
   const { mutate: deleteBill } = useDeleteBills();
 
@@ -63,8 +62,6 @@ function Bills() {
       />
     );
   };
-
-  if (isLoading) return <Loader />;
 
   return (
     <Section title="Upcoming Bills">

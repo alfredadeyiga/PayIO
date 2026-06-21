@@ -7,11 +7,10 @@ import Recents from "./components/Recents";
 import { Joyride } from "react-joyride";
 import { useEffect, useState } from "react";
 import { useProfile } from "../../../hooks/features/settings/useProfile";
-import Loader from "../../../components/ui/Loader";
 import { useUpdateProfile } from "../../../hooks/features/settings/useUpdateProfile";
 
 function Overview() {
-  const { data: profile, isLoading } = useProfile();
+  const { data: profile } = useProfile();
 
   const { mutate: updateTour } = useUpdateProfile();
 
@@ -75,8 +74,6 @@ function Overview() {
       updateTour({ has_seen_tour: true });
     }
   }
-
-  if (isLoading) return <Loader />;
 
   return (
     <div id="overview" className="flex flex-col gap-6 xl:gap-8">

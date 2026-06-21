@@ -9,13 +9,12 @@ import {
 import EmptyState from "../../../../components/ui/EmptyState";
 import { useModal } from "../../../../context/ModalContext";
 import BillsForm from "../../../../components/ui/BillsForm";
-import Loader from "../../../../components/ui/Loader";
 import { useBills } from "../../../../hooks/features/bills/useBills";
 
 function Upcoming() {
   const { openModal } = useModal();
 
-  const { data, isLoading } = useBills();
+  const { data } = useBills();
 
   const bills = data?.slice(0, 2);
 
@@ -27,7 +26,6 @@ function Upcoming() {
     });
   }
 
-  if (isLoading) return <Loader />;
 
   return (
     <Section variant="overview" title="Upcoming Bills" route="/dashboard/bills">

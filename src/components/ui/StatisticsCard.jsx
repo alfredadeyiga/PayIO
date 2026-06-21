@@ -16,7 +16,6 @@ import EmptyState from "./EmptyState";
 import { useModal } from "../../context/ModalContext";
 import TransactionsForm from "./TransactionsForm";
 import { useTransactions } from "../../hooks/features/transactions/useTransactions";
-import Loader from "./Loader";
 import { groupByMonth, groupByWeek } from "../../utils/formatGroupData";
 
 function StatisticsCard({
@@ -28,7 +27,7 @@ function StatisticsCard({
 
   const { openModal } = useModal();
 
-  const { data: transactions, isLoading } = useTransactions();
+  const { data: transactions } = useTransactions();
 
   const hasData = transactions?.length > 0;
 
@@ -59,8 +58,6 @@ function StatisticsCard({
   function handleAddTransaction() {
     openModal({ content: <TransactionsForm /> });
   }
-
-  if (isLoading) return <Loader />;
 
   return (
     <Card id="stats" variant="dashboard" className={`${hasData && "md:pr-10"}`}>

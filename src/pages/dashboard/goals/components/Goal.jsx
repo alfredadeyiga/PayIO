@@ -10,7 +10,6 @@ import EmptyState from "../../../../components/ui/EmptyState";
 import { useModal } from "../../../../context/ModalContext";
 import GoalsForm from "../../../../components/ui/GoalsForm";
 import { useGoals } from "../../../../hooks/features/goals/useGoals";
-import Loader from "../../../../components/ui/Loader";
 import {
   formatMonthRange,
   getCurrentPeriod,
@@ -31,7 +30,7 @@ function Goal() {
 
   const { openModal } = useModal();
 
-  const { data, isLoading } = useGoals();
+  const { data } = useGoals();
 
   const hasData = data?.length > 0;
 
@@ -60,8 +59,6 @@ function Goal() {
       content: <GoalsForm />,
     });
   }
-
-  if (isLoading) return <Loader />;
 
   return (
     <Card variant="breakdown" className={`p-6 ${hasData && "pt-5"}`}>

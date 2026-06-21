@@ -10,7 +10,6 @@ import EmptyState from "../../../../components/ui/EmptyState";
 import { useModal } from "../../../../context/ModalContext";
 import TransactionsForm from "../../../../components/ui/TransactionsForm";
 import { useTransactions } from "../../../../hooks/features/transactions/useTransactions";
-import Loader from "../../../../components/ui/Loader";
 import { formatShortMonth } from "../../../../utils/formatDate";
 
 function Recents() {
@@ -18,7 +17,7 @@ function Recents() {
 
   const { openModal } = useModal();
 
-  const { data, isLoading } = useTransactions();
+  const { data } = useTransactions();
 
   const filteredTransactions = useFilteredTransactions(data, activeTab);
 
@@ -29,8 +28,6 @@ function Recents() {
   function handleAddTransaction() {
     openModal({ content: <TransactionsForm /> });
   }
-
-  if (isLoading) return <Loader />;
 
   return (
     <Section

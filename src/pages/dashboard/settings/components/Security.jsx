@@ -4,7 +4,6 @@ import Button from "../../../../components/ui/Button";
 import Form from "../../../../components/ui/Form";
 import Loader from "../../../../components/ui/Loader";
 import PasswordField from "../../../../components/ui/PasswordField";
-import { useProfile } from "../../../../hooks/features/settings/useProfile";
 import { createNotification } from "../../../../api/notification";
 import { useState } from "react";
 import { useAuth } from "../../../../context/AuthContext";
@@ -13,8 +12,6 @@ function Security() {
   const [localLoading, setLocalLoading] = useState(false);
 
   const { user } = useAuth();
-
-  const { isLoading } = useProfile();
 
   async function handleUpdatePassword(e) {
     e.preventDefault();
@@ -58,7 +55,7 @@ function Security() {
     }
   }
 
-  if (isLoading || localLoading) return <Loader />;
+  if (localLoading) return <Loader />;
 
   return (
     <Form variant="settings" onSubmit={handleUpdatePassword}>

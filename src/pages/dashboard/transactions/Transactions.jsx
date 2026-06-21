@@ -15,7 +15,6 @@ import TableCard from "../../../components/ui/TableCard";
 import { useModal } from "../../../context/ModalContext";
 import TransactionsForm from "../../../components/ui/TransactionsForm";
 import { useTransactions } from "../../../hooks/features/transactions/useTransactions";
-import Loader from "../../../components/ui/Loader";
 import { formatShortMonth } from "../../../utils/formatDate";
 import { useVisibleData } from "../../../hooks/useVisibleData";
 import ActionField from "../../../components/ui/ActionField";
@@ -32,7 +31,7 @@ function Transactions() {
 
   const { mutate: deleteTransaction } = useDeleteTransaction();
 
-  const { data, isLoading } = useTransactions();
+  const { data } = useTransactions();
 
   const columns = [
     { label: "Item", accessor: "item_name" },
@@ -81,8 +80,6 @@ function Transactions() {
     maxLength,
     filteredTransactions,
   );
-
-  if (isLoading) return <Loader />;
 
   return (
     <Section title="Recent Transactions">

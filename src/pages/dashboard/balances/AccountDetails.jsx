@@ -9,7 +9,6 @@ import TableCard from "../../../components/ui/TableCard";
 import { useModal } from "../../../context/ModalContext";
 import { useBalances } from "../../../hooks/features/balances/useBalances";
 import { formatAccountNumber } from "../../../utils/formatAccountNumber";
-import Loader from "../../../components/ui/Loader";
 import { useUpdateBalance } from "../../../hooks/features/balances/useUpdateBalance";
 import { useTransactions } from "../../../hooks/features/transactions/useTransactions";
 import { formatShortMonth } from "../../../utils/formatDate";
@@ -23,7 +22,7 @@ function AccountDetails() {
 
   const navigate = useNavigate();
 
-  const { data: balances, isLoading } = useBalances();
+  const { data: balances } = useBalances();
 
   const { data: transactions } = useTransactions();
 
@@ -125,8 +124,6 @@ function AccountDetails() {
       onConfirm: deleteAccount,
     });
   }
-
-  if (isLoading) return <Loader />;
 
   if (!account) {
     return <Navigate to="/not-found" replace />;

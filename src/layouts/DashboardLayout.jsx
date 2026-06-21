@@ -7,11 +7,30 @@ import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useModal } from "../context/ModalContext";
 import Modal from "../components/ui/Modal";
+import { useProfile } from "../hooks/features/settings/useProfile";
+import Loader from "../components/ui/Loader";
+import { useTransactions } from "../hooks/features/transactions/useTransactions";
+import { useBalances } from "../hooks/features/balances/useBalances";
+import { useGoals } from "../hooks/features/goals/useGoals";
+import { useBills } from "../hooks/features/bills/useBills";
+import { useNotifications } from "../hooks/features/notifications/useNotifications";
 
 function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const { isOpen } = useModal();
+
+  const { isLoading: profileLoading } = useProfile();
+
+  const { isLoading: txLoading } = useTransactions();
+
+  const { isLoading: balancesLoading } = useBalances();
+
+  const { isLoading: goalsLoading } = useGoals();
+
+  const { isLoading: billsLoading } = useBills();
+
+  const { isLoading: notifsLoading } = useNotifications();
 
   const location = useLocation();
 
@@ -20,6 +39,16 @@ function DashboardLayout() {
   }, [location.pathname]);
 
   usePageTitle("dashboard", dashboardRoutes);
+
+  if (
+    profileLoading ||
+    txLoading ||
+    balancesLoading ||
+    goalsLoading ||
+    billsLoading ||
+    notifsLoading
+  )
+    return <Loader />;
 
   return (
     <div className="relative flex h-[100dvh]">
