@@ -32,6 +32,18 @@ export const getCurrentPeriod = () => {
   });
 };
 
+export const currentDate = new Date().toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+export const getToday = () => {
+  const date = new Date();
+
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+};
+
 export const formatMonthRange = (period) => {
   const [monthName, year] = period.split(" ");
 

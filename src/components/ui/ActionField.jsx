@@ -12,15 +12,21 @@ const ActionField = ({ onEdit, onDelete }) => {
   useOutsideClick(actionRef, () => setShowDropDown(false));
 
   return (
-    <button
-      ref={actionRef}
-      className="relative flex items-center justify-center py-[7px] px-[6px] md:p-0 rounded-md bg-previous/25 md:bg-transparent cursor-pointer"
-      onClick={() => setShowDropDown((prev) => !prev)}
-    >
-      <TbDotsVertical className="w-5 h-5 text-black" />
+    <div className="relative">
+      <button
+        aria-label="Open actions menu"
+        ref={actionRef}
+        className="flex items-center justify-center py-[7px] px-[6px] md:p-0 rounded-md bg-previous/25 md:bg-transparent cursor-pointer"
+        onClick={() => setShowDropDown((prev) => !prev)}
+      >
+        <TbDotsVertical className="w-5 h-5 text-black" />
+      </button>
 
       {showdropdown && (
-        <div className="absolute right-0 top-10 text-sm z-50 bg-white border border-previous/25 rounded shadow-md overflow-hidden">
+        <div
+          data-testid="action-dropdown"
+          className="absolute right-0 top-10 text-sm z-50 bg-white border border-previous/25 rounded shadow-md overflow-hidden"
+        >
           <button
             className="w-full flex text-card items-center gap-3 py-3 px-4 hover:bg-background transition-colors cursor-pointer"
             onClick={onEdit}
@@ -38,7 +44,7 @@ const ActionField = ({ onEdit, onDelete }) => {
           </button>
         </div>
       )}
-    </button>
+    </div>
   );
 };
 

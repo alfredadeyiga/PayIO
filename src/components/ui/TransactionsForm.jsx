@@ -48,7 +48,7 @@ function TransactionsForm({ currentId }) {
 
   const balanceOptions = balances?.map((balance) => ({
     value: balance.id,
-    label: <CustomPaymentUI card={balance} />,
+    label: <CustomPaymentUI balance={balance} />,
     displayLabel: balance.type,
     total: balance.total,
   }));
@@ -102,7 +102,7 @@ function TransactionsForm({ currentId }) {
     }
 
     if (hasTotal && updatedBalance < 0) {
-      toast.info("Amount cannot be greated than account balance");
+      toast.info("Amount cannot be greater than account balance");
       return;
     }
 
@@ -154,7 +154,7 @@ function TransactionsForm({ currentId }) {
           date: new Date(),
           transaction_type: transactionOption,
           category: categoryOption,
-          payment_method: paymentMethod.displayLabel || paymentMethod.label,
+          payment_method: paymentMethod.displayLabel,
           payment_id: hasTotal ? selectedPaymentOption : null,
           receipt: generateReceipt(),
         },
@@ -206,7 +206,7 @@ function TransactionsForm({ currentId }) {
         <SelectField
           ref={paymentRef}
           label="Payment Method"
-          options={paymentOptions.length > 0 ? paymentOptions : accountOptions}
+          options={paymentOptions}
           selectedOption={selectedPaymentOption}
           setSelectedOption={(option) => setPaymentOption(option)}
         />

@@ -21,9 +21,9 @@ function GoalsForm() {
 
     const target = Number(formData.get("target"));
 
-    const newTarget = target && target !== thisMonth.target;
+    const newTarget = target && target !== thisMonth?.target;
 
-    const newAchieved = achieved && achieved !== thisMonth.achieved;
+    const newAchieved = achieved && achieved !== thisMonth?.achieved;
 
     if (!newTarget && !newAchieved) {
       toast.info("No changes were made");

@@ -13,5 +13,5 @@ export const usePageTitle = (prefix, routes) => {
     );
 
     document.title = currentRoute?.title || "PayIO";
-  }, [location.pathname]);
+  }, [location.pathname, prefix, routes]);
 };

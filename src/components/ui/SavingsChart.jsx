@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import { formatCompact } from "../../utils/formatCompact";
-import { formatCurrencyRounded } from "../../utils/formatCurrency";
+import CustomToolTip from "./CustomToolTip";
 
 function SavingsChart({ data }) {
   const indexLength = data.length - 1;
@@ -33,23 +33,6 @@ function SavingsChart({ data }) {
     .filter((_, i) => i % gap === 0 || i === indexLength)
     .map((d) => d.date);
 
-  function CustomTooltip({ active, payload, label }) {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white shadow-lg rounded-md px-3 py-2 text-sm">
-          <p className="font-semibold text-notification">
-            {label || data[0].date}
-          </p>
-          <p className="text-primary mt-1">
-            ${formatCurrencyRounded(payload[0].value)}
-          </p>
-        </div>
-      );
-    }
-
-    return null;
-  }
-
   const chartData =
     data.length === 1 ? [data[0], { ...data[0], date: "" }] : data;
 
@@ -64,7 +47,7 @@ function SavingsChart({ data }) {
             </linearGradient>
           </defs>
           <CartesianGrid stroke="#E8E8E8" horizontal={false} />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<CustomToolTip data={data} />} />
           <XAxis
             dataKey="date"
             axisLine={false}

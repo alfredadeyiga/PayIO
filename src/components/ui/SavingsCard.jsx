@@ -28,7 +28,7 @@ function SavingsCard({ data }) {
       });
     }
 
-    return grouped.map(({ items, ...rest }) => rest);
+    return grouped;
   }
 
   return (

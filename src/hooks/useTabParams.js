@@ -4,15 +4,16 @@ import { useSearchParams } from "react-router-dom";
 export const useTabParams = (fallback, tabs) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const activeTab = searchParams.get("tab") || fallback;
-
   useEffect(() => {
-    const tab = searchParams.get("tab");
+    const tab = searchParams.get("tab")?.toLowerCase();
 
-    if (!tab || !tabs.includes(activeTab.toLowerCase())) {
+    if (!tab || !tabs.includes(tab)) {
       setSearchParams({ tab: fallback });
-    } else {
-      setSearchParams({ tab: activeTab.toLowerCase() });
+      return;
     }
-  }, []);
+
+    if (tab !== searchParams.get("tab")) {
+      setSearchParams({ tab });
+    }
+  }, [searchParams, tabs, fallback, setSearchParams]);
 };

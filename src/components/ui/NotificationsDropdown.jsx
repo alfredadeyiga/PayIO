@@ -1,7 +1,6 @@
 import { MdClose, MdKeyboardArrowDown } from "react-icons/md";
 import { useNotifications } from "../../hooks/features/notifications/useNotifications";
 import { useMarkNotification } from "../../hooks/features/notifications/useMarkNotification";
-
 import Loader from "./Loader";
 import { useState } from "react";
 import { formatDistanceToNow } from "date-fns";
@@ -30,11 +29,17 @@ function NotificationsDropdown({ onClose }) {
     <div
       onClick={(e) => e.stopPropagation()}
       className="absolute top-full -translate-x-[220px] md:-translate-x-1/2 mt-4 w-[280px] md:w-[320px] bg-white rounded-md shadow-lg border border-previous/25 z-50 overflow-hidden"
+      data-testid="notifications-dropdown"
     >
       <div className="p-4 border-b border-previous/25 flex items-center justify-between font-semibold text-black">
         <h2>Notifications</h2>
 
-        <button type="button" onClick={onClose} className="cursor-pointer">
+        <button
+          aria-label="Close notifications dropdown"
+          type="button"
+          onClick={onClose}
+          className="cursor-pointer"
+        >
           <MdClose className="text-black" />
         </button>
       </div>
@@ -80,7 +85,10 @@ function NotificationsDropdown({ onClose }) {
               </div>
 
               {!notif.is_read && (
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 w-[7px] h-[7px] rounded-full bg-primary"></span>
+                <span
+                  data-testid="unread-indicator"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-[7px] h-[7px] rounded-full bg-primary"
+                ></span>
               )}
             </div>
           ))

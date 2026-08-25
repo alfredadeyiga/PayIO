@@ -19,7 +19,7 @@ function Modal() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [closeModal]);
 
   function onCloseModal(e) {
     if (e.target === e.currentTarget) {
@@ -31,6 +31,7 @@ function Modal() {
 
   return (
     <div
+      data-testid="Modal"
       className="bg-black/15 px-6 absolute w-full flex justify-center items-center inset-0 z-50"
       onClick={onCloseModal}
     >
@@ -64,6 +65,7 @@ function Modal() {
         )}
 
         <button
+          aria-label="Close modal"
           type="button"
           className="absolute top-7 right-7 text-search cursor-pointer"
           onClick={closeModal}

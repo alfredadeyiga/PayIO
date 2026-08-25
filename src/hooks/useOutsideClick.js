@@ -7,7 +7,7 @@ function useOutsideClick(ref, callback) {
     }
 
     function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) {
+      if (ref?.current && !ref?.current.contains(e.target)) {
         callback();
       }
     }
@@ -19,7 +19,7 @@ function useOutsideClick(ref, callback) {
       window.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [ref, callback]);
 }
 
 export default useOutsideClick;

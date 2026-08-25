@@ -1,12 +1,12 @@
 function TableCard({ data, rows, columns }) {
   return (
     <div className="flex flex-col gap-6">
-      {data.map((item, index) => (
+      {data?.map((item, index) => (
         <div
           key={index}
           className={`flex flex-col gap-3 ${index !== 0 && "border-t border-previous/25 pt-6"}`}
         >
-          {columns.map((column) => (
+          {columns?.map((column) => (
             <div
               key={column.label}
               className="flex gap-5 justify-between items-center"

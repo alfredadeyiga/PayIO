@@ -17,7 +17,10 @@ function SearchDropdown({ query, onSelect }) {
   );
 
   return (
-    <div className="absolute top-full mt-2 w-full bg-white rounded-md shadow-lg border border-previous/25 z-50 overflow-hidden">
+    <div
+      data-testid="search-dropdown"
+      className="absolute top-full mt-2 w-full bg-white rounded-md shadow-lg border border-previous/25 z-50 overflow-hidden"
+    >
       <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
         {isLoading && (
           <div className="py-10">

@@ -2,13 +2,15 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 
 function EmptyState({ description = "", action }) {
   return (
-    <div className="flex flex-col py-6 h-full gap-4 items-center justify-center text-center text-previous">
-      <button type="button" className="cursor-pointer" onClick={action}>
-        <IoIosAddCircleOutline className="w-[105px] h-[105px]" />
-      </button>
+    <button
+      type="button"
+      className="flex flex-col py-6 h-full gap-4 items-center justify-center text-center text-previous cursor-pointer"
+      onClick={action}
+    >
+      <IoIosAddCircleOutline className="w-[105px] h-[105px]" />
 
       {description}
-    </div>
+    </button>
   );
 }
 

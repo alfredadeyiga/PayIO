@@ -7,9 +7,9 @@ import { useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import SearchDropdown from "../ui/SearchDropdown";
 import { RiMenu3Fill } from "react-icons/ri";
-import { useAuth } from "../../context/AuthContext";
 import { useNotifications } from "../../hooks/features/notifications/useNotifications";
 import { useProfile } from "../../hooks/features/settings/useProfile";
+import { currentDate } from "../../utils/formatDate";
 
 function Header({ onToggleSidebar }) {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -22,7 +22,7 @@ function Header({ onToggleSidebar }) {
 
   const { data: profile } = useProfile();
 
-  const firstName = profile?.first_name;
+  const firstName = profile?.first_name || "User";
 
   const location = useLocation();
 
@@ -38,16 +38,15 @@ function Header({ onToggleSidebar }) {
     setSearchQuery(undefined);
   });
 
-  const currentDate = new Date().toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-
   return (
     <header className="flex items-center justify-between gap-6 border-b border-header py-4 px-6 md:py-5 md:px-8 lg:pl-6">
       <div className="flex items-center gap-6">
-        <button type="button" className="lg:hidden" onClick={onToggleSidebar}>
+        <button
+          aria-label="Menu"
+          type="button"
+          className="lg:hidden"
+          onClick={onToggleSidebar}
+        >
           <RiMenu3Fill className="w-6 h-6 text-date" />
         </button>
 
@@ -74,6 +73,7 @@ function Header({ onToggleSidebar }) {
 
       <div className="flex items-center gap-8">
         <div
+          aria-label="Notifications"
           ref={notificationsRef}
           className={`relative md:block ${showSearch && "hidden"}`}
           onClick={() => setShowNotifications((prev) => !prev)}
@@ -81,8 +81,11 @@ function Header({ onToggleSidebar }) {
           <button type="button" className="relative flex">
             <MdNotifications className="w-6 h-6 cursor-pointer text-notification" />
 
-            {unreadNotifs?.length !== 0 && (
-              <span className="absolute w-2 h-2 top-0 right-0 mr-[2px] border border-white rounded-full bg-primary"></span>
+            {unreadNotifs?.length > 0 && (
+              <span
+                data-testid="unread-indicator"
+                className="absolute w-2 h-2 top-0 right-0 mr-[2px] border border-white rounded-full bg-primary"
+              ></span>
             )}
           </button>
 
@@ -94,6 +97,7 @@ function Header({ onToggleSidebar }) {
         </div>
 
         <button
+          aria-label="Search"
           type="button"
           className={`md:hidden flex ${showSearch && "hidden"}`}
           onClick={(e) => {
@@ -113,7 +117,7 @@ function Header({ onToggleSidebar }) {
             value={searchQuery}
             placeholder="Search transactions"
             onChange={(e) => setSearchQuery(e.target.value)}
-            onClick={(e) => setSearchQuery(e.target.value)}
+            onFocus={(e) => setSearchQuery(e.target.value)}
             className="bg-white pl-6 py-3 pr-14 w-full min-w-0 truncate rounded-xl placeholder-date text-outline"
           />
 

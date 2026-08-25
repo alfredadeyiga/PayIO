@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { formatShortMonth } from "../../utils/formatDate";
+import { formatShortMonth, getToday } from "../../utils/formatDate";
 import { FaRegCalendar } from "react-icons/fa";
 
 function DateField({
@@ -21,16 +21,6 @@ function DateField({
 
   useOutsideClick(dateRef, () => setFocus(false));
 
-  const date = new Date();
-
-  const year = date.getFullYear();
-
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-
-  const day = String(date.getDate()).padStart(2, "0");
-
-  const today = `${year}-${month}-${day}`;
-
   return (
     <div className="w-full flex flex-col gap-2 font-semibold text-search items-start">
       <label htmlFor={id}>{label}</label>
@@ -46,8 +36,9 @@ function DateField({
           ref={dateRef}
           type="date"
           required={required}
-          min={variant === "due" ? today : null}
-          max={variant === "last" ? today : null}
+          min={variant === "due" ? getToday() : null}
+          max={variant === "last" ? getToday() : null}
+          value={value}
           onChange={(e) => {
             setFocus(true);
             setValue(e.target.value);
@@ -55,7 +46,7 @@ function DateField({
           className="absolute inset-0 opacity-0 cursor-pointer"
         />
 
-        {dateValue ? dateLabel : "14 May 2022"}
+        {dateValue ? dateLabel : "14 May 2026"}
 
         <FaRegCalendar className="w-4 h-4" />
       </button>

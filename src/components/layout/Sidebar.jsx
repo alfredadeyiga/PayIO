@@ -17,9 +17,7 @@ function Sidebar({ onCloseSidebar }) {
 
   const location = useLocation();
 
-  const navItems = dashboardRoutes.filter(
-    (route) => route.showInSidebar === true,
-  );
+  const navItems = dashboardRoutes.filter((route) => route.showInSidebar);
 
   async function handleLogout() {
     setModalState({ isLoading: true });

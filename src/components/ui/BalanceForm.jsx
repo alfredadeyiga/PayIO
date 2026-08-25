@@ -41,7 +41,7 @@ function BalanceForm() {
         }));
 
         setCardOptions(options);
-      } catch (error) {
+      } catch {
         toast.error("Error retrieving card types");
       }
     }
@@ -60,7 +60,7 @@ function BalanceForm() {
   async function handleAddBalance(e) {
     e.preventDefault();
 
-    const data = [];
+    const data = {};
 
     const formData = new FormData(e.target);
 
@@ -84,8 +84,9 @@ function BalanceForm() {
         ).label.props.value;
 
         data.branch_name = `${formatAddress(cardData.address)} Branch`;
-      } catch (error) {
+      } catch {
         toast.error("Error generating card data");
+        return;
       } finally {
         setModalState({ isLoading: false });
       }

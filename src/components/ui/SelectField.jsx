@@ -27,38 +27,35 @@ function SelectField({
     selectedOptionObj?.displayLabel || selectedOptionObj?.label;
 
   return (
-    <div className="flex flex-col gap-2 font-semibold text-search items-start w-full">
-      {label}
+    <div className="relative flex flex-col gap-2 font-semibold text-search items-start w-full">
+      <h4>{label}</h4>
 
-      <div
+      <button
+        aria-label={label}
         ref={ref}
-        className="relative w-full"
+        type="button"
+        className={`flex items-center justify-between font-normal w-full border rounded-lg py-4 px-5 md:px-6 cursor-pointer ${active ? "text-outline" : "text-card"} ${focus ? "border-transparent shadow-outline-inset" : "border-previous"}`}
         onClick={() => setShowOptions((prev) => !prev)}
       >
-        <button
-          type="button"
-          className={`flex items-center justify-between font-normal w-full border rounded-lg py-4 px-5 md:px-6 cursor-pointer ${active ? "text-outline" : "text-card"} ${focus ? "border-transparent shadow-outline-inset" : "border-previous"}`}
-        >
-          {selectedLabel}
+        {selectedLabel}
 
-          <MdKeyboardArrowDown
-            className={`w-6 h-6 ${showOptions && "rotate-180"}`}
-          />
-        </button>
+        <MdKeyboardArrowDown
+          className={`w-6 h-6 ${showOptions && "rotate-180"}`}
+        />
+      </button>
 
-        {showOptions && (
-          <CustomDropdown
-            options={options}
-            setSelected={(option) => {
-              setSelectedOption(option.value);
-              setActive(true);
-              setFocus(true);
-            }}
-            onClick={() => setShowOptions(false)}
-            className="font-normal text-card pl-5 md:pl-6"
-          />
-        )}
-      </div>
+      {showOptions && (
+        <CustomDropdown
+          options={options}
+          setSelected={(option) => {
+            setSelectedOption(option.value);
+            setActive(true);
+            setFocus(true);
+          }}
+          onClick={() => setShowOptions(false)}
+          className="font-normal text-card pl-5 md:pl-6"
+        />
+      )}
     </div>
   );
 }
