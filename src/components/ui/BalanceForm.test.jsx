@@ -199,7 +199,7 @@ describe("BalanceForm", () => {
     const submitButton = screen.getByRole("button", { name: /save/i });
     await user.click(submitButton);
 
-    expect(toast.error).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(toast.error).toHaveBeenCalledTimes(1));
 
     expect(mutate).not.toHaveBeenCalled();
   });

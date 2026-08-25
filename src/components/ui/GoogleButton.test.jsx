@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen } from "../../test/test-utils";
+import { render, screen, waitFor } from "../../test/test-utils";
 import GoogleButton from "./GoogleButton";
 import { googleSignIn } from "../../api/auth";
 import { toast } from "react-toastify";
@@ -34,7 +34,7 @@ describe("GoogleButton", () => {
     const googleButton = screen.getByRole("button", { name: /google/i });
     await user.click(googleButton);
 
-    expect(googleSignIn).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(googleSignIn).toHaveBeenCalledTimes(1));
   });
 
   it("shows a toast error when sign in fails", async () => {
@@ -47,6 +47,6 @@ describe("GoogleButton", () => {
     const googleButton = screen.getByRole("button", { name: /google/i });
     await user.click(googleButton);
 
-    expect(toast.error).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(toast.error).toHaveBeenCalledTimes(1));
   });
 });
