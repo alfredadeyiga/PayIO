@@ -6,6 +6,7 @@ import userEvent from "@testing-library/user-event";
 vi.mock("../../context/ModalContext");
 
 const closeModal = vi.fn();
+
 const onConfirm = vi.fn();
 
 describe("Modal", () => {

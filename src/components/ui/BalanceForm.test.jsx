@@ -3,7 +3,6 @@ import BalanceForm from "./BalanceForm";
 import userEvent from "@testing-library/user-event";
 import { generateCard, getCardTypes } from "../../api/cards";
 import { toast } from "react-toastify";
-import { mockCards } from "../../test/fixtures/cards";
 import { useAddBalance } from "../../hooks/features/balances/useAddBalance";
 import { faker } from "@faker-js/faker";
 
@@ -35,6 +34,17 @@ vi.mock("@faker-js/faker", () => ({
 const mutate = vi.fn();
 
 describe("BalanceForm", () => {
+  const mockCards = [
+    {
+      key: "visa",
+      name: "Visa",
+    },
+    {
+      key: "amex",
+      name: "American Express",
+    },
+  ];
+
   beforeEach(() => {
     vi.clearAllMocks();
 

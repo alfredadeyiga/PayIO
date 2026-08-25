@@ -10,8 +10,6 @@ import { useUpdateBalance } from "../../hooks/features/balances/useUpdateBalance
 import { generateReceipt } from "../../utils/generateReceipt";
 import { toast } from "react-toastify";
 
-vi.mock("react-toastify");
-
 vi.mock("../../context/ModalContext");
 
 vi.mock("../../hooks/features/transactions/useTransactions");
@@ -25,6 +23,10 @@ vi.mock("../../hooks/features/balances/useBalances");
 vi.mock("../../hooks/features/balances/useUpdateBalance");
 
 vi.mock("../../utils/generateReceipt");
+
+vi.mock("react-toastify", () => ({
+  toast: { info: vi.fn() },
+}));
 
 const addTransaction = vi.fn();
 

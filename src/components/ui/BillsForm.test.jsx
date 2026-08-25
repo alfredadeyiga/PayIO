@@ -21,6 +21,7 @@ vi.mock("react-toastify", () => ({
 }));
 
 const addBill = vi.fn();
+
 const updateBill = vi.fn();
 
 describe("BillsForm", () => {
