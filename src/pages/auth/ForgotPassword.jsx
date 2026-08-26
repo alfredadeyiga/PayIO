@@ -51,7 +51,7 @@ function ForgotPassword() {
             placeholder="hello@example.com"
           />
 
-          <Button type="submit" variant="secondary">
+          <Button type="submit" variant="secondary" disabled={loading}>
             {loading ? <Loader variant="button" /> : "Send Email"}
           </Button>
         </Form>

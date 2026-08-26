@@ -70,7 +70,7 @@ function ResetPassword() {
           error={confirmError}
         />
 
-        <Button type="submit" variant="secondary">
+        <Button type="submit" variant="secondary" disabled={loading}>
           {loading ? <Loader variant="button" /> : "Reset Password"}
         </Button>
       </Form>

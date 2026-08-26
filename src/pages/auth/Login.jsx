@@ -63,6 +63,7 @@ function Login() {
           <div className="flex flex-col gap-4">
             <div className="flex gap-2 items-center">
               <button
+                aria-label="Toggle checkbox"
                 type="button"
                 className="cursor-pointer"
                 onClick={() => setChecked((prev) => !prev)}
@@ -77,7 +78,7 @@ function Login() {
               <p className="text-secondary">Keep me signed in</p>
             </div>
 
-            <Button type="submit" variant="secondary">
+            <Button type="submit" variant="secondary" disabled={loading}>
               {loading ? <Loader variant="button" /> : "Login"}
             </Button>
           </div>
