@@ -4,6 +4,7 @@ function Button({
   variant = "primary",
   children,
   route,
+  ariaLabel,
   className,
   type,
   onClick,
@@ -29,6 +30,7 @@ function Button({
     </Link>
   ) : (
     <button
+      aria-label={ariaLabel}
       type={type}
       className={`rounded cursor-pointer ${className} ${variants[variant]}`}
       onClick={onClick}

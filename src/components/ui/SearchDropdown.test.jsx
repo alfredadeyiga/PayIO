@@ -3,7 +3,6 @@ import SearchDropdown from "./SearchDropdown";
 import userEvent from "@testing-library/user-event";
 import { useTransactions } from "../../hooks/features/transactions/useTransactions";
 import { formatCurrency } from "../../utils/formatCurrency";
-import { useNavigate } from "react-router-dom";
 
 vi.mock("../../hooks/features/transactions/useTransactions");
 

@@ -3,7 +3,7 @@ export function formatAccountNumber(number, { type, masked = true }) {
 
   const string = number.toString();
 
-  const isCard = !!type.includes("Card");
+  const isCard = type.includes("Card");
 
   const formattedType = isCard ? "card" : "account";
 

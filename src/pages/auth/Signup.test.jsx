@@ -5,7 +5,6 @@ import { useAuth } from "../../context/AuthContext";
 import { useModal } from "../../context/ModalContext";
 import { signup } from "../../api/auth";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 vi.mock("../../context/AuthContext");
 

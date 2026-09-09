@@ -20,9 +20,9 @@ vi.mock("react-toastify", () => ({
 const mutate = vi.fn();
 
 describe("GoalsForm", () => {
-  const mockGoals = [
-    { period: getCurrentPeriod(), achieved: 2000, target: 5000 },
-  ];
+  const currentPeriod = getCurrentPeriod();
+
+  const mockGoals = [{ period: currentPeriod, achieved: 2000, target: 5000 }];
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -91,7 +91,7 @@ describe("GoalsForm", () => {
     expect(mutate).toHaveBeenCalledWith({
       achieved: 2000,
       target: 5000,
-      period: getCurrentPeriod(),
+      period: currentPeriod,
     });
   });
 
@@ -113,7 +113,7 @@ describe("GoalsForm", () => {
     expect(mutate).toHaveBeenCalledWith({
       achieved: 3000,
       target: 5000,
-      period: getCurrentPeriod(),
+      period: currentPeriod,
     });
   });
 
