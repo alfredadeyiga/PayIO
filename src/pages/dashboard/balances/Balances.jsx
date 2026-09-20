@@ -40,7 +40,7 @@ function Balances() {
     <Section title="Balances">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8">
         {balances.map((balance) => {
-          const isCard = !!balance.type.includes("Card");
+          const isCard = balance.type.includes("Card");
 
           const serviceType = isCard ? "Card" : "Account";
 
@@ -82,6 +82,7 @@ function Balances() {
                     </div>
 
                     <button
+                      aria-label={`Toggle ${serviceType.toLowerCase()} number`}
                       type="button"
                       onClick={() => handleToggle(balance.id)}
                       className="cursor-pointer"
@@ -100,14 +101,16 @@ function Balances() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <p
+                  <button
+                    aria-label={`Remove ${serviceType.toLowerCase()} number`}
+                    type="button"
                     className="text-primary cursor-pointer"
                     onClick={() => {
                       handleDeleteBalance(balance.id, accountNumber);
                     }}
                   >
                     Remove
-                  </p>
+                  </button>
 
                   <Button
                     variant="secondary"

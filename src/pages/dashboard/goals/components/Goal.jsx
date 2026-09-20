@@ -68,6 +68,7 @@ function Goal() {
             <p className="font-bold text-search">Savings Goal</p>
 
             <div
+              aria-label="Toggle goal dropdown"
               ref={rangeRef}
               className="relative inline-block"
               onClick={() => setShowOptions((prev) => !prev)}

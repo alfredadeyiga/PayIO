@@ -26,7 +26,6 @@ function Upcoming() {
     });
   }
 
-
   return (
     <Section variant="overview" title="Upcoming Bills" route="/dashboard/bills">
       <Card id="bills" className={`${data.length > 1 && "!gap-6"}`}>
@@ -48,7 +47,11 @@ function Upcoming() {
                 </span>
 
                 <div className="flex flex-col gap-1">
-                  <img src={bill.logo} alt="logo" className="w-6 h-6" />
+                  <img
+                    src={bill.logo}
+                    alt={`${bill.bill_name}-logo`}
+                    className="w-6 h-6"
+                  />
 
                   <p className="font-bold text-search">{bill.bill_name}</p>
 

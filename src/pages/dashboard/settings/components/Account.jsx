@@ -33,7 +33,7 @@ function Account() {
     }
 
     if (phone.length === 1) {
-      return "Phone number must contain digits";
+      return "Phone number must contain more than one digit";
     }
 
     if (!/^\d+$/.test(phone.slice(1))) {
@@ -176,6 +176,7 @@ function Account() {
               <p className="text-sm text-primary">{selectedFile.name}</p>
 
               <button
+                aria-label="Remove file"
                 type="button"
                 className="cursor-pointer text-red"
                 onClick={() => setSelectedFile(null)}
@@ -186,9 +187,11 @@ function Account() {
           ) : (
             <label className="flex flex-col items-center gap-4 p-6 border border-dashed rounded-lg cursor-pointer">
               <TbPhotoUp className="w-6 h-6 text-card" />
+
               <p className="w-20 text-center text-xs text-date">
                 Upload your photo
               </p>
+
               <input
                 type="file"
                 accept="image/*"

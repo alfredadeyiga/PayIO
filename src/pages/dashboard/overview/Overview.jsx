@@ -5,7 +5,6 @@ import Goals from "./components/Goals";
 import Statistics from "./components/Statistics";
 import Recents from "./components/Recents";
 import { Joyride } from "react-joyride";
-import { useEffect, useState } from "react";
 import { useProfile } from "../../../hooks/features/settings/useProfile";
 import { useUpdateProfile } from "../../../hooks/features/settings/useUpdateProfile";
 
@@ -14,13 +13,7 @@ function Overview() {
 
   const { mutate: updateTour } = useUpdateProfile();
 
-  const [showTour, setShowTour] = useState(false);
-
-  useEffect(() => {
-    if (profile) {
-      setShowTour(!profile.has_seen_tour);
-    }
-  }, [profile]);
+  const showTour = !profile?.has_seen_tour;
 
   const steps = [
     {

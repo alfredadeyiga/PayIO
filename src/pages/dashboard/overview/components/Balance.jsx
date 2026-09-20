@@ -52,7 +52,7 @@ function Balance() {
 
               <div className="w-full flex bg-primary p-4 gap-4 rounded overflow-x-hidden">
                 {balances.map((balance, index) => {
-                  const isCard = !!balance.type.includes("Card");
+                  const isCard = balance.type.includes("Card");
 
                   const accountNumber = formatAccountNumber(
                     balance.account_number,
@@ -114,6 +114,7 @@ function Balance() {
               <div className="flex gap-2">
                 {balances.map((_, index) => (
                   <span
+                    data-testid={`dot-${index}`}
                     key={index}
                     className={`w-2 h-2 rounded-full cursor-pointer transition-colors duration-300 ease-in-out ${currentIndex === index ? "bg-primary" : "bg-previous"}`}
                     onClick={() => setCurrentIndex(index)}

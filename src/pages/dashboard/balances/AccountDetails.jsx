@@ -30,18 +30,18 @@ function AccountDetails() {
 
   const { mutate: deleteId } = useDeleteBalance();
 
-  const params = useParams();
+  const { id } = useParams();
 
-  const account = balances?.find((balance) => balance.id === params.id);
+  const account = balances?.find((balance) => balance.id === id);
 
-  const isCard = !!account?.type.includes("Card");
+  const isCard = account?.type.includes("Card");
 
   const accountNumber = formatAccountNumber(account?.account_number, {
     type: account?.type,
   });
 
   const accountTransactions = transactions?.filter(
-    (tx) => tx.payment_id === account?.id,
+    (tx) => tx.payment_id === id,
   );
 
   const formatTxType = (type) => {
@@ -87,7 +87,7 @@ function AccountDetails() {
 
     mutate(
       {
-        id: account.id,
+        id,
         total: balance,
       },
       {
@@ -113,8 +113,11 @@ function AccountDetails() {
   }
 
   function deleteAccount() {
-    deleteId(account.id);
-    navigate("/dashboard/balances");
+    deleteId(id, {
+      onSuccess: () => {
+        navigate("/dashboard/balances");
+      },
+    });
   }
 
   function handleDeleteAccount() {

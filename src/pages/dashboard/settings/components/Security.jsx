@@ -65,7 +65,9 @@ function Security() {
           id="currentPassword"
           label="Current Password"
         />
+
         <PasswordField variant="settings" label="New Password" />
+
         <PasswordField
           variant="settings"
           id="retypePassword"

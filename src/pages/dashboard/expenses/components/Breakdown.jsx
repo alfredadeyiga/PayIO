@@ -45,6 +45,7 @@ function Breakdown() {
                       </p>
                       {exp.change && (
                         <IoMdArrowUp
+                          aria-label={`${exp.change} in expenses`}
                           className={`w-4 h-4 ${exp.change === "Increase" ? "text-red" : "text-green rotate-180"}`}
                         />
                       )}

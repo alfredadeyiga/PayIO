@@ -102,6 +102,7 @@ function Category() {
               </div>
 
               <Button
+                ariaLabel={`Adjust ${goal.category}`}
                 type="button"
                 variant="outline"
                 onClick={() => {

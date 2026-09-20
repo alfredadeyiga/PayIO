@@ -62,6 +62,7 @@ function Summary() {
               <p className="font-bold text-search">Savings Summary</p>
 
               <div
+                aria-label="Toggle summary dropdown"
                 ref={monthRef}
                 className="relative inline-block w-fit"
                 onClick={() => setShowOptions((prev) => !prev)}
@@ -96,7 +97,7 @@ function Summary() {
         </div>
       ) : (
         <EmptyState
-          description="Add your transactions to see chart data"
+          description="Add transactions to see chart data"
           action={handleAddTransaction}
         />
       )}
