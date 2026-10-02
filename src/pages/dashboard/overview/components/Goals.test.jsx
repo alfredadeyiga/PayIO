@@ -8,8 +8,6 @@ import { formatCurrencyRounded } from "../../../../utils/formatCurrency";
 
 vi.mock("../../../../context/ModalContext");
 
-vi.mock("../../../../utils/formatDate");
-
 vi.mock("../../../../hooks/features/goals/useGoals");
 
 vi.mock("../../../../components/ui/GoalsMetrics", () => ({
@@ -19,7 +17,7 @@ vi.mock("../../../../components/ui/GoalsMetrics", () => ({
 const openModal = vi.fn();
 
 describe("Goals", () => {
-  const currentPeriod = "September 2026";
+  const currentPeriod = getCurrentPeriod();
 
   const mockGoals = [
     {
@@ -39,8 +37,6 @@ describe("Goals", () => {
     vi.mocked(useGoals).mockReturnValue({
       data: mockGoals,
     });
-
-    vi.mocked(getCurrentPeriod).mockReturnValue(currentPeriod);
   });
 
   it("renders empty state when there is no data", () => {
@@ -77,7 +73,9 @@ describe("Goals", () => {
       screen.getByText(`$${formatCurrencyRounded(mockGoals[0].target)}`),
     ).toBeInTheDocument();
 
-    expect(screen.getByText("September, 2026")).toBeInTheDocument();
+    expect(
+      screen.getByText(currentPeriod.replace(" ", ", ")),
+    ).toBeInTheDocument();
 
     expect(screen.getByText("Goals Metrics")).toBeInTheDocument();
   });
