@@ -3,7 +3,5 @@ export const getLogo = (value) => {
 
   const formattedValue = encodeURIComponent(value);
 
-  const link = `https://img.logo.dev/name/${formattedValue}?token=${logoApiKey}&format=webp&retina=true`;
-
-  return link;
+  return `https://img.logo.dev/name/${formattedValue}?token=${logoApiKey}&format=webp&retina=true`;
 };
